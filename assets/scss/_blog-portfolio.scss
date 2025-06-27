@@ -1,4 +1,6 @@
 @use "sass:math";
+@use "@/assets/scss/_variables.scss" as *;
+@use "@/assets/scss/_mixins.scss" as *;
 
 // Content
 section.page {
@@ -96,10 +98,10 @@ section.page {
     margin-right: 0.875rem; // 14px
   }
   .category-link::before {
-    content: ' ';
+    content: " ";
     display: inline-block;
-    -webkit-mask: url('~assets/img/folder-icon.svg') no-repeat;
-    mask: url('~assets/img/folder-icon.svg') no-repeat;
+    -webkit-mask: url("~assets/img/folder-icon.svg") no-repeat;
+    mask: url("~assets/img/folder-icon.svg") no-repeat;
     -webkit-mask-size: contain;
     mask-size: contain;
     background-size: contain;

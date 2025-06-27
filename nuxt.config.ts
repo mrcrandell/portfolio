@@ -2,25 +2,32 @@
 export default defineNuxtConfig({
   modules: [
     // ...
-    '@pinia/nuxt',
-    'nuxt-proxy',
-    ['@nuxtjs/eslint-module', {
-      fix: true
-    }],
-    'nuxt-gtag'
+    "@pinia/nuxt",
+    "nuxt-proxy",
+    [
+      "@nuxtjs/eslint-module",
+      {
+        fix: true,
+      },
+    ],
+    "nuxt-gtag",
+    "@nuxt/content",
   ],
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
           additionalData: `
-            @use 'sass:math';
-            @import "@/assets/scss/_variables.scss";
-            @import "@/assets/scss/_mixins.scss";
-          `
-        }
-      }
-    }
+            @use "@/assets/scss/_variables.scss" as *;
+            @use "@/assets/scss/_mixins.scss" as *;
+          `,
+        },
+      },
+    },
+  },
+  ssr: true, // SSR enabled (still needed for flexibility)
+  nitro: {
+    preset: "cloudflare-pages", // This makes sure output works with CF Pages
   },
   devtools: { enabled: true },
   telemetry: false,
@@ -30,9 +37,9 @@ export default defineNuxtConfig({
     mailgunApi: process.env.MAILGUN_API,
     public: {
       invisibleRecaptchaSiteKey: process.env.INVISIBLE_RECAPTCHA_SITEKEY,
-    }
+    },
   },
   gtag: {
-    id: process.env.GOOGLE_ANALYTICS_ID
-  }
-})
+    id: process.env.GOOGLE_ANALYTICS_ID,
+  },
+});

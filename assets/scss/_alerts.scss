@@ -1,3 +1,8 @@
+@use "sass:color";
+@use "sass:math";
+@use "@/assets/scss/_variables.scss" as *;
+@use "@/assets/scss/_mixins.scss" as *;
+
 // Alerts
 .alert {
   @include box_shadow(3);
@@ -10,12 +15,12 @@
 .alert-success {
   background-color: $apple;
   .alert-link {
-    color: darken($apple, 50%);
+    color: color.adjust($apple, $lightness: -50%);
   }
 }
 .alert-danger {
   background-color: $red;
   .alert-link {
-    color: darken($red, 50%);
+    color: color.adjust($red, $lightness: -50%);
   }
 }

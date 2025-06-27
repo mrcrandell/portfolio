@@ -1,4 +1,6 @@
 @use "sass:math";
+@use "sass:color";
+@use "sass:map";
 
 // Body
 //$body-bg: #f8fafc;
@@ -26,18 +28,18 @@ $spacer: 1rem;
 // Colors
 // Greens
 $apple: #4cb848;
-$deyork: lighten($apple, 15%); //#82cd7f
-$goblin: darken($apple, 15%); //#358132
+$deyork: color.adjust($apple, $lightness: 15%); //#82cd7f
+$goblin: color.adjust($apple, $lightness: -15%); //#358132
 // Blues
 $sanmarino: #4759a7;
-$shipcove: lighten($sanmarino, 15%); //#7685c5
-$rhino: darken($sanmarino, 15%); //#303c71
+$shipcove: color.adjust($sanmarino, $lightness: 15%); //#7685c5
+$rhino: color.adjust($sanmarino, $lightness: -15%); //#303c71
 // Blacks
 $mostly-black: #252525; // gray-900ish
 $black: #000;
 // Grays
 $french-gray: #bbbbbd;
-$middle-gray: mix($mostly-black, $french-gray, 50%); // #707071
+$middle-gray: color.mix($mostly-black, $french-gray, 50%); // #707071
 // Red / Danger
 $red: #f86c6b;
 // Alternative names
@@ -45,29 +47,41 @@ $text-muted: $french-gray;
 $danger: $red;
 
 $colors: () !default;
-$colors: map-merge(
+$colors: map.merge(
   (
-    'apple': $apple,
-    'deyork': $deyork,
-    'goblin': $goblin,
-    'sanmarino': $sanmarino,
-    'shipcove': $shipcove,
-    'rhino': $rhino,
-    'red': $red,
-    'french-gray': $french-gray,
-    'middle-gray': $middle-gray,
-    'mostly-black': $mostly-black,
-    'black': $black,
+    "apple": $apple,
+    "deyork": $deyork,
+    "goblin": $goblin,
+    "sanmarino": $sanmarino,
+    "shipcove": $shipcove,
+    "rhino": $rhino,
+    "red": $red,
+    "french-gray": $french-gray,
+    "middle-gray": $middle-gray,
+    "mostly-black": $mostly-black,
+    "black": $black,
   ),
   $colors
 );
 
 // Typography
-$font-family-base: 'Aileron', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-  Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-  'Liberation Mono', 'Courier New', monospace;
+$font-family-base:
+  "Aileron",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  "Helvetica Neue",
+  Arial,
+  "Noto Sans",
+  sans-serif,
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+  "Noto Color Emoji";
+$font-family-monospace:
+  SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+  monospace;
 $font-size-base: 1.125rem; // 18px
 $font-size-sm: 0.875rem; // 14px
 $font-weight-base: 300;

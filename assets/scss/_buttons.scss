@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "@/assets/scss/_variables.scss" as *;
+@use "@/assets/scss/_mixins.scss" as *;
+
 // Buttons
 .btn {
   display: inline-block;
@@ -70,7 +74,7 @@
   //@include shadow-1();
   &:hover,
   &:focus {
-    background-color: darken($red, 7.5%);
+    background-color: color.adjust($red, $lightness: -7.5%);
     color: #fff;
   }
 }

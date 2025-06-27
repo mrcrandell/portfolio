@@ -283,6 +283,7 @@ async function submitForm() {
   </section>
 </template>
 <style lang="scss" scoped>
+@use "sass:math";
 section#contact {
   background: $rhino no-repeat center center fixed;
   color: #fff;
