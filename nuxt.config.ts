@@ -18,6 +18,7 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData: `
+            @use "@/assets/scss/_functions.scss" as *;
             @use "@/assets/scss/_variables.scss" as *;
             @use "@/assets/scss/_mixins.scss" as *;
           `,
@@ -41,5 +42,15 @@ export default defineNuxtConfig({
   },
   gtag: {
     id: process.env.GOOGLE_ANALYTICS_ID,
+  },
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          // Theme used in all color schemes.
+          theme: "material-theme-ocean",
+        },
+      },
+    },
   },
 });

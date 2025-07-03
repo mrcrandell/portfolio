@@ -1,38 +1,83 @@
 <script lang="ts" setup>
 import { format, parseISO } from 'date-fns';
 const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () => {
+const { data: post } = await useAsyncData(route.path, () => {
   return queryCollection('blog').path(route.path).first()
 });
 const formattedDate = computed(() =>
-  page.value?.date ? format(parseISO(page.value.date), 'MMMM d, yyyy') : ''
+  post.value?.date ? format(parseISO(post.value.date), 'MMMM d, yyyy') : ''
 )
 const datetime = computed(() =>
-  page.value?.date ? format(parseISO(page.value.date), 'yyyy-MM-dd') : ''
+  post.value?.date ? format(parseISO(post.value.date), 'yyyy-MM-dd') : ''
 )
+
+const postTitle = computed(() => {
+  return `${post.value?.title} | Matt Crandell`;
+});
+
+// Set dynamic post metadata
+useHead(() => ({
+  title: postTitle.value,
+  meta: [
+    {
+      name: 'description',
+      content: post.value?.description || '',
+    },
+  ],
+}));
 </script>
 
 <template>
-  <div class="blog-page-container">
-    <header class="page-header">
-      <h1>{{ page?.title }}</h1>
-      <time
-        class="updated"
-        :datetime="datetime"
-      >
-        {{ formattedDate }}
-      </time>
+  <article class="blog-post-container">
+    <header class="post-masthead">
+      <div class="featured-img">
+        <img
+          v-if="post?.image"
+          loading="lazy"
+          class="img-fluid"
+          :src="post.image"
+          :alt="post?.image || ''"
+        >
+      </div>
+      <div class="post-header">
+        <div clas="entry-meta">
+          <span>{{ (post as any).category }}</span>
+          <h1
+            class="entry-title"
+          >
+            {{ post?.title }}
+          </h1>
+          <div class="entry-meta">
+            <time
+              class="updated"
+              :datetime="datetime"
+            >
+              {{ formattedDate }}
+            </time>
+          <!-- <div class="read-time">
+            {{ post.readTime }}
+          </div> -->
+          </div>
+        </div>
+      </div>
     </header>
+
     <ContentRenderer
-      v-if="page"
-      :value="page"
+      v-if="post"
+      :value="post"
     />
-  </div>
+  </article>
 </template>
 
 <style lang="scss" scoped>
-.blog-page-container {
-    padding: 7.5rem 2rem 0 2rem;
-}
+/* .blog-post-container {
+    // padding: 7.5rem 2rem 0 2rem;
+    padding: ($nav-height + 3rem) 2rem 0 2rem;
+    > * {
+    max-width: $max-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
+} */
 
 </style>

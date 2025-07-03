@@ -1,3 +1,6 @@
+@use "@/assets/scss/_functions.scss" as *;
+@use "@/assets/scss/_variables.scss" as *;
+
 // Global
 html {
   scroll-behavior: smooth;
@@ -51,4 +54,15 @@ hr {
 .page-header {
   margin-bottom: 2rem; // 32px
   border-bottom: 1px solid $sanmarino;
+}
+
+// Code Highlighting
+pre.shiki {
+  font-size: rem(14);
+  padding: rem(20) rem(24);
+  margin-bottom: rem(32);
+}
+pre.material-theme-ocean {
+  background-color: #0f111a;
+  color: #babed8;
 }

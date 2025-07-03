@@ -27,6 +27,7 @@ useHead({
 @import '~/assets/scss/_buttons.scss';
 @import '~/assets/scss/_forms.scss';
 @import '~/assets/scss/_alerts.scss';
+@import '~/assets/scss/_masthead.scss';
 @import '~/assets/scss/pages/_intro.scss';
 @import '~/assets/scss/pages/_blog-portfolio.scss';
 
