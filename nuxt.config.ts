@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: "2024-09-19",
   modules: [
     // ...
     "@pinia/nuxt",
@@ -28,7 +29,11 @@ export default defineNuxtConfig({
   },
   ssr: true, // SSR enabled (still needed for flexibility)
   nitro: {
-    preset: "cloudflare-pages", // This makes sure output works with CF Pages
+    preset: "cloudflare_module",
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
+    },
   },
   devtools: { enabled: true },
   telemetry: false,
