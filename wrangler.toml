@@ -1,2 +1,6 @@
 name = "portfolio"
-compatibility_date = "2025-04-01"
+workers_dev = true
+compatibility_date = "2025-07-08"
+
+[build]
+command = "nuxi build"

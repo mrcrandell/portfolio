@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: "2024-09-19",
+  compatibilityDate: "2025-07-08",
   modules: [
     // ...
     "@pinia/nuxt",
@@ -36,7 +36,15 @@ export default defineNuxtConfig({
     },
     prerender: {
       autoSubfolderIndex: false,
+      crawlLinks: true,
+      routes: ["/"],
     },
+  },
+  /* nitro: {
+    preset: "static", // optional, Nuxt automatically infers static
+  }, */
+  routeRules: {
+    "/**": { static: true },
   },
   devtools: { enabled: true },
   telemetry: false,
