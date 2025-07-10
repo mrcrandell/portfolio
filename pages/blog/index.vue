@@ -19,28 +19,35 @@ const { data: posts } = await useAsyncData('blog', () => queryCollection('blog')
       v-if="posts"
       :value="posts"
     />
-    <div
-      v-for="post in posts"
-      :key="post.path"
-      class="mb-6"
-    >
-      <NuxtLink :to="post.path">
-        <h2>{{ post.title }}</h2>
-      </NuxtLink>
-      <p class="text-gray-600">
-        {{ post.description }}
-      </p>
+    <div class="post-grid">
+      <PostCard
+        v-for="post in posts"
+        :key="post.path"
+        :post="post"
+      />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .blog-index-container {
-  padding: ($nav-height + 3rem) 2rem 0 2rem;
-  > * {
+  padding: ($nav-height + 3rem) 2rem rem(32) 2rem;
+  /* > * {
     max-width: $max-width;
     margin-left: auto;
     margin-right: auto;
+  } */
+}
+.post-grid {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: $max-width;
+  margin: 0 auto;
+  //padding: 0 30px;
+  @media (min-width: $grid-lg) {
+    // grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 </style>

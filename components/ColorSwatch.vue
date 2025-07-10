@@ -54,9 +54,10 @@ function getContrast(hexcolor) {
   </div>
 </template>
 <style lang="scss" scoped>
+@use "sass:list";
 .color-swatch {
   min-height: 100px;
-  @include box_shadow(3);
+  box-shadow: $box-shadow-3;
   font-size: 1rem;
   padding: 15px;
   // margin-bottom: 15px;
@@ -64,7 +65,7 @@ function getContrast(hexcolor) {
   color: #fff;
   background-color: #eee;
   @each $color, $value in $colors {
-    $i: index(($colors), ($color $value));
+    $i: list.index(($colors), ($color $value));
     &.swatch#{$i} {
       color: color-yiq($value);
       background-color: $value;

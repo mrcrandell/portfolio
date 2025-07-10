@@ -133,7 +133,8 @@ section.page {
   header {
     // margin: 2rem 0; // 32px 0
   }
-  .entry-content {
+  .entry-content,
+  .post-content {
     @include paragraph-sizing();
     @media (min-width: ($max-width + 192px)) {
       margin-left: auto;
@@ -193,7 +194,7 @@ section.page {
       max-width: 100%;
       height: auto;
       &.portfolio-img {
-        @include box-shadow(3);
+        box-shadow: $box-shadow-2;
         &.portfolio-browser {
           border-radius: 5px;
         }
@@ -282,7 +283,7 @@ section.page {
 
 .wp-caption img {
   @extend .figure-img;
-  @extend .img-fluid;
+  @extend .img-fluid !optional;
 }
 
 .wp-caption-text {
@@ -291,7 +292,7 @@ section.page {
 
 /** Text meant only for screen readers */
 .screen-reader-text {
-  @extend .sr-only;
+  @extend .sr-only !optional;
   &:active,
   &:focus {
     position: static;

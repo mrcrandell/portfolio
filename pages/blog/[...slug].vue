@@ -6,10 +6,10 @@ const { data: post } = await useAsyncData(route.path, () => {
 });
 const formattedDate = computed(() =>
   post.value?.date ? format(parseISO(post.value.date), 'MMMM d, yyyy') : ''
-)
+);
 const datetime = computed(() =>
   post.value?.date ? format(parseISO(post.value.date), 'yyyy-MM-dd') : ''
-)
+);
 
 const postTitle = computed(() => {
   return `${post.value?.title} | Matt Crandell`;
@@ -41,7 +41,7 @@ useHead(() => ({
       </div>
       <div class="post-header">
         <div clas="entry-meta">
-          <span>{{ (post as any).category }}</span>
+          <span>{{ post?.category }}</span>
           <h1
             class="entry-title"
           >
@@ -65,6 +65,7 @@ useHead(() => ({
     <ContentRenderer
       v-if="post"
       :value="post"
+      class="post-content"
     />
   </article>
 </template>

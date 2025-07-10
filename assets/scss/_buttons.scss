@@ -4,6 +4,14 @@
 
 // Buttons
 .btn {
+  @include transition(
+    color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out
+  );
+}
+.btn {
   display: inline-block;
   // font-family: $input-btn-font-family;
   // font-weight: $btn-font-weight;
@@ -21,12 +29,6 @@
     $input-btn-font-size,
     $input-btn-line-height
   );
-  @include transition(
-    color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out,
-    border-color 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out
-  );
 
   &:hover,
   &.hover {
@@ -34,7 +36,7 @@
     text-decoration: none;
   }
 
-  @include box_shadow(1);
+  box-shadow: $box-shadow-1;
   &:focus,
   &.focus {
     //outline: 0;

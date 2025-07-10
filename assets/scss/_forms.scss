@@ -1,3 +1,5 @@
+@use "~/assets/scss/_variables.scss" as *;
+@use "~/assets/scss/_mixins.scss" as *;
 // Forms
 .form-control {
   display: block;
@@ -5,23 +7,23 @@
   border: 1px solid #fff;
   padding: 0.5rem 1rem;
   color: $middle-gray;
-  @include box_shadow(1);
+  box-shadow: $box-shadow-1;
   &:focus {
-      outline: 0;
-      @include box_shadow(3);
-      @include transition(box-shadow 0.3s ease-in-out);
+    outline: 0;
+    box-shadow: $box-shadow-3;
+    @include transition(box-shadow 0.3s ease-in-out);
   }
   // Placeholder
   &::placeholder {
-      color: $french-gray;
-      // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
-      opacity: 1;
+    color: $french-gray;
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
   }
 }
 select.form-control {
   &[size],
   &[multiple] {
-      height: auto;
+    height: auto;
   }
 }
 
@@ -53,7 +55,7 @@ label {
   // Use [disabled] and :disabled for workaround https://github.com/twbs/bootstrap/issues/28247
   &[disabled] ~ .form-check-label,
   &:disabled ~ .form-check-label {
-      color: $text-muted;
+    color: $text-muted;
   }
 }
 
@@ -69,10 +71,10 @@ label {
 
   // Undo .form-check-input defaults and add some `margin-right`.
   .form-check-input {
-      position: static;
-      margin-top: 0;
-      margin-right: $form-check-inline-input-margin-x;
-      margin-left: 0;
+    position: static;
+    margin-top: 0;
+    margin-right: $form-check-inline-input-margin-x;
+    margin-left: 0;
   }
 }
 
@@ -95,15 +97,15 @@ label {
 .form-control {
   &.is-invalid,
   &.is-valid {
-      ~ .invalid-feedback,
-      ~ .valid-feedback {
-          display: block;
-      }
+    ~ .invalid-feedback,
+    ~ .valid-feedback {
+      display: block;
+    }
   }
   &.is-invalid {
-      border-color: $red;
+    border-color: $red;
   }
   &.is-valid {
-      border-color: $deyork;
+    border-color: $deyork;
   }
 }

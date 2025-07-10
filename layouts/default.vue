@@ -19,16 +19,16 @@ useHead({
 </template>
 
 <style lang="scss">
-@import '~/assets/scss/_fonts.scss';
-@import '~/assets/scss/_reboot.scss';
-@import '~/assets/scss/_global.scss';
+@use '~/assets/scss/_fonts.scss' as *;
+@use '~/assets/scss/_reboot.scss' as *;
+@use '~/assets/scss/_global.scss' as *;
 // @import '~/assets/scss/_blog-portfolio.scss';
-@import '~/assets/scss/_typography.scss';
-@import '~/assets/scss/_buttons.scss';
-@import '~/assets/scss/_forms.scss';
-@import '~/assets/scss/_alerts.scss';
-@import '~/assets/scss/_masthead.scss';
-@import '~/assets/scss/pages/_intro.scss';
-@import '~/assets/scss/pages/_blog-portfolio.scss';
+@use '~/assets/scss/_typography.scss' as *;
+@use '~/assets/scss/_buttons.scss' as *;
+@use '~/assets/scss/_forms.scss' as *;
+@use '~/assets/scss/_alerts.scss' as *;
+@use '~/assets/scss/_masthead.scss' as *;
+@use '~/assets/scss/pages/_intro.scss' as *;
+@use '~/assets/scss/pages/_blog-portfolio.scss' as *;
 
 </style>

@@ -5,7 +5,7 @@
 
 // Alerts
 .alert {
-  @include box_shadow(3);
+  box-shadow: $box-shadow-3;
   padding: 0.5rem 1rem;
   border: 5px solid #fff;
   color: #fff;

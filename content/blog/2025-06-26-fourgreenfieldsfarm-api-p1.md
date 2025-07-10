@@ -590,4 +590,8 @@ To test:
 
 ## Wrapping Up Part 1
 
-At this point, the backend is **fully capable of managing events**, supporting recurring events, and protecting endpoints with JWT authentication. This sets up the Four Green Fields Farm website for an organized, secure event management system, ready to integrate seamlessly with a Nuxt frontend.
+At this point, the backend is fully capable of managing events, supporting recurring events, and protecting endpoints with JWT authentication. This sets up the Four Green Fields Farm website for an organized, secure event management system, ready to integrate seamlessly with a Nuxt frontend.
+
+If you want to peek under the hood or use this as a starting point for your own seasonal event-heavy site, you can check out the full code here:
+
+[View the project on GitHub](https://github.com/crandelldesign/fourgreenfieldsfarm-api)

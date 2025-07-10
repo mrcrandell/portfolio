@@ -153,7 +153,7 @@ img {
   max-width: 500px;
   height: auto;
   margin: 0 auto;
-  @include box-shadow(2);
+  box-shadow: $box-shadow-2;
   border: 2px solid $sanmarino;
 }
 </style>

@@ -31,7 +31,7 @@ header.header {
   border-bottom: 1px solid $sanmarino;
   transform: translate3d(0, 0, 0);
   transition: 0.1s all ease-out;
-  @include box_shadow(3);
+  box-shadow: $box-shadow-3;
   > .container {
     display: flex;
     flex-wrap: wrap;

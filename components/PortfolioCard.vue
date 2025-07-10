@@ -100,28 +100,15 @@ const hoverImgs = computed(() => {
 
 <style lang="scss" scoped>
 .portfolio-thumbnail {
-  border: 1px solid $sanmarino;
-  @include box-shadow(1);
   @include transition(box-shadow 0.3s ease-in-out);
+}
+.portfolio-thumbnail {
+  border: 1px solid $sanmarino;
+  box-shadow: $box-shadow-1;
+
   display: flex;
   flex-direction: column;
-  div.client-img {
-    overflow: hidden;
-    position: relative;
-    img {
-      display: block;
-      max-width: 100%;
-      width: 100%;
-      height: auto;
-      @include transition(all 0.3s ease-in-out);
-    }
-    .hover-img {
-      opacity: 0;
-      visibility: hidden;
-      position: absolute;
-      top: 0;
-    }
-  }
+
   div.info {
     padding: 10px;
     flex: 1;
@@ -153,7 +140,7 @@ const hoverImgs = computed(() => {
     }
   }
   &:hover {
-    @include box-shadow(2);
+    box-shadow: $box-shadow-2;
     div.client-img {
       .main-img {
         opacity: 0;
@@ -168,6 +155,24 @@ const hoverImgs = computed(() => {
     .btn {
       background-color: $goblin;
     }
+  }
+}
+
+div.client-img {
+  overflow: hidden;
+  position: relative;
+  img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    @include transition(all 0.3s ease-in-out);
+  }
+  .hover-img {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
   }
 }
 </style>
