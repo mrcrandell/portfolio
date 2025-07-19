@@ -1,6 +1,7 @@
 name = "portfolio"
 workers_dev = true
 compatibility_date = "2025-07-08"
+main = "src/index.ts"
 
 [build]
-command = "nuxi build"
+command = "true"
