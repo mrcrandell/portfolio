@@ -28,6 +28,8 @@ const name = ref('');
 const email = ref('');
 const messageText = ref('');
 const recaptchaToken = ref('');
+const token = ref(null);
+const turnstileRef = ref(null);
 // const submitText = ref('Submit');
 const isLoading = ref(false);
 const errorsRaw = ref([]);
@@ -60,7 +62,8 @@ async function submitForm() {
     name: name.value,
     email: email.value,
     messageText: messageText.value,
-    recaptchaToken: recaptchaToken.value,
+    // recaptchaToken: recaptchaToken.value,
+    token: token.value
   }
 
   const { error } = contactValidation.validate(formData, { abortEarly: false });
@@ -79,12 +82,7 @@ async function submitForm() {
   try {
     const data = await $fetch('/api/contact', {
       method: 'POST',
-      body: {
-        name: name.value,
-        email: email.value,
-        messageText: messageText.value,
-        recaptchaToken: recaptchaToken.value,
-      }
+      body: formData,
     });
     console.log(data);
     alert.value = {
@@ -103,10 +101,11 @@ async function submitForm() {
       message: 'Please correct the errors in red on the form.',
     };
     // console.log(error.data);
-    errorsRaw.value = error.data;
+    errorsRaw.value = Array.isArray(error?.data) ? error?.data : [{ path: ['form'], message: error?.data?.message || 'Unknown error' }];
     // console.log(errors.value);
   } finally {
     isLoading.value = false;
+    turnstileRef.value?.reset();
   }
 }
 
@@ -239,14 +238,18 @@ async function submitForm() {
               {{ errors.messageText }}
             </div>
           </div>
-          <div class="form-group disclaimer">
+          <!-- <div class="form-group disclaimer">
             <small>This site is protected by reCAPTCHA and the Google
               <a href="https://policies.google.com/privacy">Privacy Policy</a>
               and
               <a href="https://policies.google.com/terms">Terms of Service</a>
               apply.
             </small>
-          </div>
+          </div> -->
+          <NuxtTurnstile
+            ref="turnstileRef"
+            v-model="token"
+          />
           <div class="form-group form-group-submit">
             <button
               type="submit"
