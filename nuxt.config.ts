@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     preset: "cloudflare_module",
     cloudflare: {
       deployConfig: true,
-      nodeCompat: true,
+      // nodeCompat: true,
     },
     prerender: {
       autoSubfolderIndex: false,
