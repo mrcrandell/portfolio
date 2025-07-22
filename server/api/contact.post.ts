@@ -132,7 +132,6 @@ export default defineEventHandler(async (event) => {
 
   const template = contactTemplate || "";
   console.log(template);
-
   emailData.emailBody = `<div>
       <h1>You've Been Contacted by ${emailData.name}</h1>
       <p><strong>Name:</strong> ${emailData.name}</p>
@@ -140,6 +139,7 @@ export default defineEventHandler(async (event) => {
       <p>${emailData.name} writes... ${emailData.messageText}</p>
     </div>`;
   let html = juice(mustache.render(template, emailData));
+  console.log(html);
   let data = {
     from: "postmaster@mailgun.mattcrandell.com",
     to: "me@mattcrandell.com",
