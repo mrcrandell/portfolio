@@ -6,7 +6,6 @@ import juice from "juice";
 import formData from "form-data";
 import Mailgun from "mailgun.js";
 import { useContactValidation } from "../../composables/useContactValidation.js";
-import { contactTemplate } from "../templates/contact";
 const contactValidation = useContactValidation();
 
 // import * as templateDir from '../../public/emails/contact.html';
@@ -30,7 +29,6 @@ async function validateToken(ip: string, token: string, secret: string) {
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
-  const appUrl = config.public.appUrl || "https://yourdomain.com";
   const body = await readBody(event);
   const mailgun = new Mailgun(formData as any);
   const client = mailgun.client({ username: "api", key: config.mailgunApi });
@@ -101,37 +99,10 @@ export default defineEventHandler(async (event) => {
     year: new Date().getFullYear(),
     emailBody: "",
   };
-  /* const template = fs.readFileSync(
+  const template = fs.readFileSync(
     path.resolve(path.join(process.cwd(), "public", "emails/contact.html")),
     "utf8"
-  ); */
-  /* let template: string;
-  if (process.env.NODE_ENV === "development") {
-    // Use fs in local/dev
-    template = fs.readFileSync(
-      path.resolve(path.join(process.cwd(), "public", "emails/contact.html")),
-      "utf8"
-    );
-  } else {
-    // Use $fetch in production/serverless
-    // template = await (await fetch(`${config.appUrl}/emails/contact`)).text();
-    console.log(
-      "Fetching email template from:",
-      `${config.appUrl}/emails/contact`
-    );
-    const htmlResponse = await fetch(`${config.appUrl}/emails/contact`);
-    if (!htmlResponse.ok) {
-      setResponseStatus(event, 500);
-      return { error: "Failed to load email template" };
-    }
-    template = await htmlResponse.text();
-    template = await fetch(
-      new URL("../../assets/emails/contact.html", import.meta.url)
-    ).then((res) => res.text());
-  } */
-
-  const template = contactTemplate || "";
-  console.log(template);
+  );
   emailData.emailBody = `<div>
       <h1>You've Been Contacted by ${emailData.name}</h1>
       <p><strong>Name:</strong> ${emailData.name}</p>
@@ -139,7 +110,6 @@ export default defineEventHandler(async (event) => {
       <p>${emailData.name} writes... ${emailData.messageText}</p>
     </div>`;
   let html = juice(mustache.render(template, emailData));
-  console.log(html);
   let data = {
     from: "postmaster@mailgun.mattcrandell.com",
     to: "me@mattcrandell.com",
@@ -147,10 +117,8 @@ export default defineEventHandler(async (event) => {
     subject: `You've Been Contacted from Your Website by ${emailData.name}`,
     html,
   };
-  console.log(data);
   try {
     await client.messages.create(config.mailgunDomain, data);
-    console.log("email 1 sent successfully");
     // Email 2
     emailData.emailBody = `<div>
         <h1>Thank You for Contacting Matt Crandell</h1>
@@ -170,11 +138,6 @@ export default defineEventHandler(async (event) => {
         "Thank you for contacting me, I will get back to you as soon as possible.",
     };
   } catch (error) {
-    console.error("Mailgun send failed:", error);
-    if (error && error.stack) {
-      console.error(error.stack);
-    }
-    console.error("Data sent:", data);
     return error;
   }
 });

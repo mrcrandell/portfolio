@@ -53,7 +53,6 @@ export default defineNuxtConfig({
     mailgunDomain: process.env.MAILGUN_DOMAIN,
     mailgunApi: process.env.MAILGUN_API,
     nuxtTurnstileSecretKey: process.env.NUXT_TURNSTILE_SECRET_KEY,
-    appUrl: process.env.APP_URL,
     turnstile: {
       // This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
       // environment variable.
