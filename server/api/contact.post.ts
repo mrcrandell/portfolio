@@ -150,6 +150,7 @@ export default defineEventHandler(async (event) => {
   console.log(data);
   try {
     await client.messages.create(config.mailgunDomain, data);
+    console.log("email 1 sent successfully");
     // Email 2
     emailData.emailBody = `<div>
         <h1>Thank You for Contacting Matt Crandell</h1>
@@ -169,6 +170,11 @@ export default defineEventHandler(async (event) => {
         "Thank you for contacting me, I will get back to you as soon as possible.",
     };
   } catch (error) {
+    console.error("Mailgun send failed:", error);
+    if (error && error.stack) {
+      console.error(error.stack);
+    }
+    console.error("Data sent:", data);
     return error;
   }
 });
