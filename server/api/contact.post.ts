@@ -114,6 +114,10 @@ export default defineEventHandler(async (event) => {
   } else {
     // Use $fetch in production/serverless
     // template = await (await fetch(`${config.appUrl}/emails/contact`)).text();
+    console.log(
+      "Fetching email template from:",
+      `${config.appUrl}/emails/contact`
+    );
     const htmlResponse = await fetch(`${config.appUrl}/emails/contact`);
     if (!htmlResponse.ok) {
       setResponseStatus(event, 500);
