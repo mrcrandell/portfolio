@@ -26,6 +26,7 @@
     "vue": "latest"
   },
   "dependencies": {
+    "@cloudflare/kv-asset-handler": "^0.1.4",
     "@nuxt/content": "^3.6.1",
     "@pinia/nuxt": "^0.5.1",
     "better-sqlite3": "^11.10.0",
