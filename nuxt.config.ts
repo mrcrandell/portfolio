@@ -31,7 +31,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: "cloudflare_module",
     cloudflare: {
-      deployConfig: true
+      deployConfig: true,
     },
     prerender: {
       autoSubfolderIndex: false,
@@ -39,9 +39,6 @@ export default defineNuxtConfig({
       routes: ["/"],
     },
   },
-  /* nitro: {
-    preset: "static", // optional, Nuxt automatically infers static
-  }, */
   routeRules: {
     "/**": { static: true },
   },
