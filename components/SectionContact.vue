@@ -84,7 +84,7 @@ async function submitForm() {
       method: 'POST',
       body: formData,
     });
-    console.log(data);
+    // console.log(data);
     alert.value = {
       show: true,
       status: 'success',
