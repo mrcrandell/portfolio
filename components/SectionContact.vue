@@ -2,7 +2,7 @@
 // import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3';
 // const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
 // import { load } from 'recaptcha-v3';
-const runtimeConfig = useRuntimeConfig();
+// const runtimeConfig = useRuntimeConfig();
 const contactValidation = useContactValidation();
 // const { vueApp } = useNuxtApp();
 // import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3'
@@ -27,7 +27,7 @@ const alert = ref({
 const name = ref('');
 const email = ref('');
 const messageText = ref('');
-const recaptchaToken = ref('');
+// const recaptchaToken = ref('');
 const token = ref(null);
 const turnstileRef = ref(null);
 // const submitText = ref('Submit');
