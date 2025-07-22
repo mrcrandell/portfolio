@@ -104,8 +104,23 @@ export default defineEventHandler(async (event) => {
     path.resolve(path.join(process.cwd(), "public", "emails/contact.html")),
     "utf8"
   ); */
-  const template = (await $fetch(`${appUrl}/emails/contact.html`)) as string;
-  emailData.emailBody = `<div>
+  let template: string;
+  if (process.env.NODE_ENV === "development") {
+    // Use fs in local/dev
+    template = fs.readFileSync(
+      path.resolve(path.join(process.cwd(), "public", "emails/contact.html")),
+      "utf8"
+    );
+  } else {
+    // Use $fetch in production/serverless
+    template = await $fetch(`${config.appUrl}/emails/contact.html`);
+  }
+
+  console.log(template);
+
+  return;
+
+  /* emailData.emailBody = `<div>
       <h1>You've Been Contacted by ${emailData.name}</h1>
       <p><strong>Name:</strong> ${emailData.name}</p>
       <p><strong>Email:</strong> <a href="mailto:${emailData.email}" target="_blank">${emailData.email}</a></p>
@@ -141,5 +156,5 @@ export default defineEventHandler(async (event) => {
     };
   } catch (error) {
     return error;
-  }
+  } */
 });
