@@ -118,9 +118,7 @@ export default defineEventHandler(async (event) => {
 
   console.log(template);
 
-  return;
-
-  /* emailData.emailBody = `<div>
+  emailData.emailBody = `<div>
       <h1>You've Been Contacted by ${emailData.name}</h1>
       <p><strong>Name:</strong> ${emailData.name}</p>
       <p><strong>Email:</strong> <a href="mailto:${emailData.email}" target="_blank">${emailData.email}</a></p>
@@ -156,5 +154,5 @@ export default defineEventHandler(async (event) => {
     };
   } catch (error) {
     return error;
-  } */
+  }
 });
