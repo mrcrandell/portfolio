@@ -1,7 +1,7 @@
 <script setup>
 // import { VueReCaptcha, useReCaptcha } from 'vue-recaptcha-v3';
 // const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
-import { load } from 'recaptcha-v3';
+// import { load } from 'recaptcha-v3';
 const runtimeConfig = useRuntimeConfig();
 const contactValidation = useContactValidation();
 // const { vueApp } = useNuxtApp();
