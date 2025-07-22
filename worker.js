@@ -1,22 +1,31 @@
-import { getAssetFromKV } from "@cloudflare/kv-asset-handler";
 import * as nitroWorker from "./.output/server/index.mjs";
 
 addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
+  // Attempt to serve .html directly first
   if (url.pathname.endsWith(".html")) {
-    // Serve static file directly without redirect
-    event.respondWith(handleStatic(event));
+    event.respondWith(handleHtmlRequest(event.request));
   } else {
-    // Forward to Nitro Worker for SSR/API handling
-    event.respondWith(nitroWorker.fetch(event.request, env, ctx));
+    // Fallback to Nitro SSR for everything else
+    event.respondWith(nitroWorker.fetch(event.request, event));
   }
 });
 
-async function handleStatic(event) {
+async function handleHtmlRequest(request) {
   try {
-    return await getAssetFromKV(event);
-  } catch (e) {
-    return new Response("Not found", { status: 404 });
+    // Attempt to fetch the static file directly
+    const response = await fetch(request);
+
+    // If the file exists (status 200), serve it directly
+    if (response.status === 200) {
+      return response;
+    }
+
+    // If the file does not exist, fallback to SSR
+    return await nitroWorker.fetch(request);
+  } catch (error) {
+    // On any error, fallback to SSR
+    return await nitroWorker.fetch(request);
   }
 }
