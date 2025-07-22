@@ -79,6 +79,7 @@ export default defineEventHandler(async (event) => {
   console.log("ip", ip);
   console.log("token", token);
   console.log("secret", turnstileSecret);
+
   if (!(await validateToken(ip, token, turnstileSecret))) {
     // HTTP_400: Bad Request
     /* return {
