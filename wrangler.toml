@@ -5,3 +5,7 @@ main = "worker.js"
 
 [observability.logs]
 enabled = true
+
+[site]
+bucket = ".output/public"
+entry-point = "."

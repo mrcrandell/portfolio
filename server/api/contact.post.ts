@@ -113,7 +113,7 @@ export default defineEventHandler(async (event) => {
     );
   } else {
     // Use $fetch in production/serverless
-    template = await $fetch(`${config.appUrl}/emails/contact`);
+    template = await $fetch(`${config.appUrl}/emails/contact.html`);
   }
 
   console.log(template);
