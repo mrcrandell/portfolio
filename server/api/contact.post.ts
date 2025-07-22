@@ -29,6 +29,7 @@ async function validateToken(ip: string, token: string, secret: string) {
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig(event);
+  const appUrl = config.public.appUrl || "https://yourdomain.com";
   const body = await readBody(event);
   const mailgun = new Mailgun(formData as any);
   const client = mailgun.client({ username: "api", key: config.mailgunApi });
@@ -99,10 +100,11 @@ export default defineEventHandler(async (event) => {
     year: new Date().getFullYear(),
     emailBody: "",
   };
-  const template = fs.readFileSync(
+  /* const template = fs.readFileSync(
     path.resolve(path.join(process.cwd(), "public", "emails/contact.html")),
     "utf8"
-  );
+  ); */
+  const template = (await $fetch(`${appUrl}/emails/contact.html`)) as string;
   emailData.emailBody = `<div>
       <h1>You've Been Contacted by ${emailData.name}</h1>
       <p><strong>Name:</strong> ${emailData.name}</p>
