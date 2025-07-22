@@ -147,6 +147,7 @@ export default defineEventHandler(async (event) => {
     subject: `You've Been Contacted from Your Website by ${emailData.name}`,
     html,
   };
+  console.log(data);
   try {
     await client.messages.create(config.mailgunDomain, data);
     // Email 2
