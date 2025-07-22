@@ -53,10 +53,10 @@ async function submitForm() {
   // const token = await recaptchaInstance?.executeRecaptcha('contact')
   errorsRaw.value = [];
   isLoading.value = true;
-  const recaptcha = await load(runtimeConfig.public.invisibleRecaptchaSiteKey, {
+  /* const recaptcha = await load(runtimeConfig.public.invisibleRecaptchaSiteKey, {
     autoHideBadge: true
   })
-  recaptchaToken.value = await recaptcha.execute('contact');
+  recaptchaToken.value = await recaptcha.execute('contact'); */
 
   const formData = {
     name: name.value,
@@ -93,7 +93,7 @@ async function submitForm() {
     name.value = '';
     email.value = '';
     messageText.value = '';
-    recaptchaToken.value = '';
+    // recaptchaToken.value = '';
   } catch(error) {
     alert.value = {
       show: true,
