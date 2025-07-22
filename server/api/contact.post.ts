@@ -6,6 +6,7 @@ import juice from "juice";
 import formData from "form-data";
 import Mailgun from "mailgun.js";
 import { useContactValidation } from "../../composables/useContactValidation.js";
+import { contactTemplate } from "../templates/contact";
 const contactValidation = useContactValidation();
 
 // import * as templateDir from '../../public/emails/contact.html';
@@ -104,7 +105,7 @@ export default defineEventHandler(async (event) => {
     path.resolve(path.join(process.cwd(), "public", "emails/contact.html")),
     "utf8"
   ); */
-  let template: string;
+  /* let template: string;
   if (process.env.NODE_ENV === "development") {
     // Use fs in local/dev
     template = fs.readFileSync(
@@ -114,7 +115,7 @@ export default defineEventHandler(async (event) => {
   } else {
     // Use $fetch in production/serverless
     // template = await (await fetch(`${config.appUrl}/emails/contact`)).text();
-    /* console.log(
+    console.log(
       "Fetching email template from:",
       `${config.appUrl}/emails/contact`
     );
@@ -123,12 +124,13 @@ export default defineEventHandler(async (event) => {
       setResponseStatus(event, 500);
       return { error: "Failed to load email template" };
     }
-    template = await htmlResponse.text(); */
-    const template = await fetch(
+    template = await htmlResponse.text();
+    template = await fetch(
       new URL("../../assets/emails/contact.html", import.meta.url)
     ).then((res) => res.text());
-  }
+  } */
 
+  const template = contactTemplate || "";
   console.log(template);
 
   emailData.emailBody = `<div>
