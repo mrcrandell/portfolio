@@ -114,7 +114,7 @@ export default defineEventHandler(async (event) => {
   } else {
     // Use $fetch in production/serverless
     // template = await (await fetch(`${config.appUrl}/emails/contact`)).text();
-    console.log(
+    /* console.log(
       "Fetching email template from:",
       `${config.appUrl}/emails/contact`
     );
@@ -123,7 +123,10 @@ export default defineEventHandler(async (event) => {
       setResponseStatus(event, 500);
       return { error: "Failed to load email template" };
     }
-    template = await htmlResponse.text();
+    template = await htmlResponse.text(); */
+    const template = await fetch(
+      new URL("../../assets/emails/contact.html", import.meta.url)
+    ).then((res) => res.text());
   }
 
   console.log(template);
