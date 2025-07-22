@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const mailgun = new Mailgun(formData as any);
   const client = mailgun.client({ username: "api", key: config.mailgunApi });
-  const turnstileSecret = process.env.NUXT_TURNSTILE_SECRET_KEY || "";
+  const turnstileSecret = config.nuxtTurnstileSecretKey || "";
 
   /* const contactSchema = Joi.object().keys({
     name: Joi.string().trim().required().messages({
