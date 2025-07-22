@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     ],
     "nuxt-gtag",
     "@nuxt/content",
+    "@nuxtjs/turnstile",
   ],
   vite: {
     css: {
@@ -44,10 +45,18 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
   telemetry: false,
+  turnstile: {
+    siteKey: "0x4AAAAAABkpCASYb_kRu1YH",
+  },
   runtimeConfig: {
     invisibleRecaptchaSecretkey: process.env.INVISIBLE_RECAPTCHA_SECRETKEY,
     mailgunDomain: process.env.MAILGUN_DOMAIN,
     mailgunApi: process.env.MAILGUN_API,
+    turnstile: {
+      // This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
+      // environment variable.
+      secretKey: "",
+    },
     public: {
       invisibleRecaptchaSiteKey: process.env.INVISIBLE_RECAPTCHA_SITEKEY,
     },
