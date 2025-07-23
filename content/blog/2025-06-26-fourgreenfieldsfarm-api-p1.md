@@ -594,4 +594,4 @@ At this point, the backend is fully capable of managing events, supporting recur
 
 If you want to peek under the hood or use this as a starting point for your own seasonal event-heavy site, you can check out the full code here:
 
-[View the project on GitHub](https://github.com/crandelldesign/fourgreenfieldsfarm-api)
+[View the project on GitHub](https://github.com/mrcrandell/fourgreenfieldsfarm-api)
