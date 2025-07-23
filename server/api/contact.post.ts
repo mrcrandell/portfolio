@@ -100,10 +100,16 @@ export default defineEventHandler(async (event) => {
     year: new Date().getFullYear(),
     emailBody: "",
   };
-  const filePath = join(process.cwd(), "server/templates/emails/contact.html");
+  // const filePath = join(process.cwd(), "server/assets/emails/contact.html");
 
   // Read the template synchronously
-  const template = readFileSync(filePath, "utf-8");
+  // const template = readFileSync(filePath, "utf-8");
+  const assets = useStorage("assets:server");
+  const template = await assets.getItem("emails/contact.html");
+  if (typeof template !== "string") {
+    setResponseStatus(event, 500);
+    return { error: "Email template not found." };
+  }
   emailData.emailBody = `<div>
       <h1>You've Been Contacted by ${emailData.name}</h1>
       <p><strong>Name:</strong> ${emailData.name}</p>
