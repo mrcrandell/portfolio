@@ -100,7 +100,7 @@ export default defineEventHandler(async (event) => {
     year: new Date().getFullYear(),
     emailBody: "",
   };
-  const filePath = join(process.cwd(), "assets/emails/contact.html");
+  const filePath = join(process.cwd(), "server/templates/emails/contact.html");
 
   // Read the template synchronously
   const template = readFileSync(filePath, "utf-8");
