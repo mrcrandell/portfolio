@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   },
   ssr: true, // SSR enabled (still needed for flexibility)
   nitro: {
-    preset: "cloudflare_module",
+    preset: "vercel",
     cloudflare: {
       deployConfig: true,
     },

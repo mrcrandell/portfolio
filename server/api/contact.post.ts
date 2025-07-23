@@ -1,6 +1,7 @@
 // import Joi from "joi";
-import fs from "fs";
-import path from "path";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+// import path from "path";
 import mustache from "mustache";
 import juice from "juice";
 import formData from "form-data";
@@ -76,9 +77,9 @@ export default defineEventHandler(async (event) => {
   if (Array.isArray(ip)) {
     ip = ip[0];
   }
-  console.log("ip", ip);
-  console.log("token", token);
-  console.log("secret", turnstileSecret);
+  // console.log("ip", ip);
+  // console.log("token", token);
+  // console.log("secret", turnstileSecret);
 
   if (!(await validateToken(ip, token, turnstileSecret))) {
     // HTTP_400: Bad Request
@@ -99,10 +100,10 @@ export default defineEventHandler(async (event) => {
     year: new Date().getFullYear(),
     emailBody: "",
   };
-  const template = fs.readFileSync(
-    path.resolve(path.join(process.cwd(), "public", "emails/contact.html")),
-    "utf8"
-  );
+  const filePath = join(process.cwd(), "assets/emails/contact.html");
+
+  // Read the template synchronously
+  const template = readFileSync(filePath, "utf-8");
   emailData.emailBody = `<div>
       <h1>You've Been Contacted by ${emailData.name}</h1>
       <p><strong>Name:</strong> ${emailData.name}</p>
