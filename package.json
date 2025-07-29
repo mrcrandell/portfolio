@@ -38,7 +38,6 @@
     "jwt-decode": "^3.1.2",
     "mailgun.js": "^9.4.0",
     "mustache": "^4.2.0",
-    "nuxt-proxy": "^0.3.12",
     "nuxt-swiper": "^1.2.2",
     "path": "^0.12.7",
     "pinia": "^2.0.28",

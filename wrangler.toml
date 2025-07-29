@@ -1,7 +1,0 @@
-name = "portfolio"
-workers_dev = true
-compatibility_date = "2025-07-08"
-main = ".output/server/index.mjs"
-
-[observability.logs]
-enabled = true
