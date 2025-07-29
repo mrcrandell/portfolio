@@ -4,7 +4,7 @@ definePageMeta({
   description: 'Matt Crandel is a seasoned front end web developer with over ten years experience working with everything from small businesses to large corporations.'
 });
 
-const { data: posts } = await useAsyncData('blog', () => queryCollection('blog').all())
+const { data: posts } = await useAsyncData('blog', () => queryCollection('blog').order('date', 'DESC').all())
 
 // const { data: posts2 } = await useAsyncData('blog', () => queryCollection('blog').all())
 
