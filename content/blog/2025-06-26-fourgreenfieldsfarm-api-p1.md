@@ -1,5 +1,5 @@
 ---
-title: New API for Four Green Fields Farm — Part 1
+title: New API for Four Green Fields Farm - Part 1
 description: How I used TypeORM and routing-controllers to modernize a farm website backend with clean architecture and recurring event logic.
 image: /img/blog/1-post.jpg
 category: Backend
@@ -36,7 +36,7 @@ npm init -y
 
 ### 1. Install Dependencies
 
-Next, I installed the core packages I knew I’d need — Express, TypeORM, routing-controllers, and a few others to support validation, file uploads, environment variables, and PostgreSQL:
+Next, I installed the core packages I knew I’d need - Express, TypeORM, routing-controllers, and a few others to support validation, file uploads, environment variables, and PostgreSQL:
 
 ```bash
 npm install express typeorm pg routing-controllers class-validator class-transformer dotenv reflect-metadata multer csv-parser rrule jsonwebtoken argon2 cors
